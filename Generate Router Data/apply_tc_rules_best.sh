@@ -2,11 +2,11 @@
 set -x
 
 # Load environment settings
-if [ ! -f ../utils/settings.sh ]; then
+if [ ! -f ./utils/settings.sh ]; then
     echo "Error: settings.sh not found"
     exit 1
 fi
-source ../utils/settings.sh
+source ./utils/settings.sh
 
 # --- Datapoint 1 ---
 echo "Applying 244 Mbps, 4 ms, Loss: 8.0000%"

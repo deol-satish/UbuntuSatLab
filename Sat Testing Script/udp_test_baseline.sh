@@ -89,7 +89,7 @@ echo "Starting downloading data"
 timestamp=$(date +"%Y-%m-%d-%H-%M-%S")
 
 # Create main directory with timestamp
-base_dir="./data/udp_net_${timestamp}"
+base_dir="./data/udp_net_${timestamp}_baseline"
 mkdir -p "$base_dir"
 ssh root@"$router_ipaddr" "dmesg > "dmesg_${testname}_${timestamp}.txt"" 
 
