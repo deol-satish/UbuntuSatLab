@@ -1,0 +1,4 @@
++ '[' '!' -f ./utils/settings.sh ']'
++ echo 'Error: settings.sh not found'
+Error: settings.sh not found
++ exit 1

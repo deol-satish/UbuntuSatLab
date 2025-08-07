@@ -1,0 +1,35 @@
+sudo apt upgrade
+sudo apt install iperf3 -y
+sudo apt install git -y
+
+sudo apt install openssh-server -y
+sudo systemctl enable --now ssh
+sudo systemctl status ssh
+
+
+sudo nano /etc/ssh/sshd_config
+**Modify the `PermitRootLogin` Directive:**
+   - Look for the line that says `PermitRootLogin` and change it to:
+     ```bash
+     PermitRootLogin yes
+     ```
+
+sudo systemctl restart sshd
+
+Allow SSH in Firewall (if applicable)
+sudo ufw allow ssh
+
+#To set root password
+sudo passwd root
+
+iperf3 -c 192.168.3.2 -t 30 -p 5101 -C cubic
+iperf3 -c 192.168.3.2 -t 30 -p 5102 -C reno
+
+
+
+client1:
+client2:
+router:
+server:192.168.11.137
+
+in client1: add sudo ip route add 192.168.2.0/24 via 192.168.1.1 dev ens37
