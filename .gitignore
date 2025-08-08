@@ -5,3 +5,5 @@
 *.pyc
 *.csv
 /Sat Testing Script/data
+/Sat Testing Script/viz_udp/Raks
+*.png
