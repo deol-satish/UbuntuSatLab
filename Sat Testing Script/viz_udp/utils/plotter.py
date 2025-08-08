@@ -12,7 +12,7 @@ def save_plot(fig, filename, folder):
         fig.savefig(f"{folder}/{filename}.{fmt}", dpi=DPI, bbox_inches='tight')
 
 
-def plot_siftr_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph_directory):
+def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph_directory):
     """Plot a graph from Siftr log files."""
     sns.set_style("darkgrid")
     fig, ax = plt.subplots(figsize=global_figsize)
