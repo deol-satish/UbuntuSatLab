@@ -10,6 +10,34 @@ logging.basicConfig(
     format='%(asctime)s - %(levelname)s - %(message)s'
 )
 
+
+
+def find_files_by_folder(root_dir, extensions):
+    """
+    Search for files with given extensions inside immediate subfolders of root_dir.
+    Returns a dict: {folder_name: [file1, file2, ...]}
+    """
+    result = {}
+    extensions = set(ext.lower() for ext in extensions)  # normalize extensions
+
+    # Iterate over immediate subfolders inside root_dir
+    for folder_name in os.listdir(root_dir):
+        folder_path = os.path.join(root_dir, folder_name)
+        if os.path.isdir(folder_path):
+            matching_files = []
+            # Walk inside this subfolder recursively
+            for dirpath, _, filenames in os.walk(folder_path):
+                for file in filenames:
+                    if any(file.lower().endswith(ext) for ext in extensions):
+                        # Save the relative path of the file from the folder_path
+                        relative_path = os.path.relpath(os.path.join(dirpath, file), folder_path)
+                        full_path = os.path.abspath(os.path.join(dirpath, file))
+                        matching_files.append(full_path)
+            if matching_files:
+                result[folder_name] = matching_files
+
+    return result
+
 def find_files_with_extension(paths=['./'], extension='.log'):
     file_paths = []
     file_names = []
@@ -187,3 +215,53 @@ def create_directory_if_not_exists(directory_path):
         print(f"Directory created: {directory_path}")
     else:
         print(f"Directory already exists: {directory_path}")
+
+
+
+
+
+import json
+import pandas as pd
+
+def extract_iperf3_data_df(filename):
+    with open(filename) as f:
+        data = json.load(f)
+
+    records = []
+
+    for interval in data['intervals']:
+        record = {
+            'time': interval['sum']['start'],
+            'bitrate_mbps': interval['sum']['bits_per_second'] / 1_000_000
+        }
+
+        stream = interval['streams'][0]
+
+        # RTT
+        if 'rtt' in stream:
+            record['rtt_time'] = stream['start']
+            record['rtt_ms'] = stream['rtt'] / 1000.0  # µs to ms
+        else:
+            record['rtt_time'] = None
+            record['rtt_ms'] = None
+
+        # Retransmits
+        record['retransmits'] = stream.get('retransmits', None)
+
+        # Send congestion window (bytes to KB)
+        if 'snd_cwnd' in stream:
+            record['snd_cwnd_kb'] = stream['snd_cwnd'] / 1024.0
+        else:
+            record['snd_cwnd_kb'] = None
+
+        records.append(record)
+
+    df = pd.DataFrame(records)
+
+    df.rename(columns={'rtt_ms': 'SmoothedRTT'}, inplace=True)
+    df.rename(columns={'time': 'Time'}, inplace=True)
+    df.rename(columns={'bitrate_mbps': 'thrpt'}, inplace=True)
+    df.rename(columns={'retransmits': 'Lost_Packets'}, inplace=True)
+
+    return df
+

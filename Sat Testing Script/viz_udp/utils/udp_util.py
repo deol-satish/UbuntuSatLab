@@ -51,6 +51,12 @@ def extract_udp_prague_to_dataframe(input_txt_file):
     # Convert numeric columns from strings to appropriate types
     numeric_cols = df.columns
     df[numeric_cols] = df[numeric_cols].apply(pd.to_numeric, errors='coerce')
+    
+    df.rename(columns={'RTT_ms': 'SmoothedRTT'}, inplace=True)
+    df.rename(columns={'time': 'Time'}, inplace=True)
+    df.rename(columns={'Rcvd_Mbps': 'thrpt'}, inplace=True)
+    df.rename(columns={'Lost_Lost': 'Lost_Packets'}, inplace=True)
+    
 
     return df
 

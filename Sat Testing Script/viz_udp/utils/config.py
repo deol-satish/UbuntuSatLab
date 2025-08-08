@@ -11,7 +11,7 @@ DPI = 500
 # linestyles = ['-', '--', '-.', ':']                         # Add more linestyles as needed
 
 
-colors = ['red','black', 'g', 'm', 'y', 'k']
+colors = ['red','black', 'green', 'yellow', 'y', 'k']
 markers = ['', '', '', '']         # Add more markers as needed
 linestyles = ['-', '-', '-', '']                         # Add more linestyles as needed
 
