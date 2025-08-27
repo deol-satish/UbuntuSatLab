@@ -1,0 +1,150 @@
++ '[' '!' -f ../utils/settings.sh ']'
++ source ../utils/settings.sh
+++ client1port=3322
+++ client2port=3323
+++ routerport=4422
+++ serverport=4423
+++ router_ipaddr=192.168.11.140
+++ server_ipaddr=192.168.11.141
+++ client1_ipaddr=192.168.11.142
+++ client2_ipaddr=192.168.11.143
+++ vmhostaddr=192.168.56.1
+++ sshkey=id_rsa
+++ sshkeypath=/home/deols/.ssh/id_rsa
+++ tcp1=prague
+++ tcp2=cubic
+++ tcp1_ecn=2
+++ tcp2_ecn=1
+++ duration=300
++ echo 'Applying 78 Mbps, 4 ms, Loss: 24.0000% with fq_codel'
+Applying 78 Mbps, 4 ms, Loss: 24.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 24%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 78mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 1'
+Completed setup for datapoint 1
++ sleep 30
++ echo 'Applying 15 Mbps, 4 ms, Loss: 38.0000% with fq_codel'
+Applying 15 Mbps, 4 ms, Loss: 38.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 38%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 15mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 2'
+Completed setup for datapoint 2
++ sleep 30
++ echo 'Applying 7 Mbps, 5 ms, Loss: 42.0000% with fq_codel'
+Applying 7 Mbps, 5 ms, Loss: 42.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 5ms loss 42%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 7mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 3'
+Completed setup for datapoint 3
++ sleep 30
++ echo 'Applying 9 Mbps, 5 ms, Loss: 41.0000% with fq_codel'
+Applying 9 Mbps, 5 ms, Loss: 41.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 5ms loss 41%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 9mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 4'
+Completed setup for datapoint 4
++ sleep 30
++ echo 'Applying 347 Mbps, 4 ms, Loss: 4.0000% with fq_codel'
+Applying 347 Mbps, 4 ms, Loss: 4.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 4%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 347mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 5'
+Completed setup for datapoint 5
++ sleep 30
++ echo 'Applying 89 Mbps, 4 ms, Loss: 23.0000% with fq_codel'
+Applying 89 Mbps, 4 ms, Loss: 23.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 23%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 89mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 6'
+Completed setup for datapoint 6
++ sleep 30
++ echo 'Applying 43 Mbps, 4 ms, Loss: 31.0000% with fq_codel'
+Applying 43 Mbps, 4 ms, Loss: 31.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 31%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 43mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 7'
+Completed setup for datapoint 7
++ sleep 30
++ echo 'Applying 12 Mbps, 5 ms, Loss: 40.0000% with fq_codel'
+Applying 12 Mbps, 5 ms, Loss: 40.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 5ms loss 40%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 12mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 8'
+Completed setup for datapoint 8
++ sleep 30
++ echo 'Applying 203 Mbps, 4 ms, Loss: 11.0000% with fq_codel'
+Applying 203 Mbps, 4 ms, Loss: 11.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 11%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 203mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 9'
+Completed setup for datapoint 9
++ sleep 30
++ echo 'Applying 14 Mbps, 4 ms, Loss: 39.0000% with fq_codel'
+Applying 14 Mbps, 4 ms, Loss: 39.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 4ms loss 39%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 14mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 10'
+Completed setup for datapoint 10
++ sleep 30
++ echo 'Applying 603 Mbps, 5 ms, Loss: 0.0000% with fq_codel'
+Applying 603 Mbps, 5 ms, Loss: 0.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 5ms loss 0%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 603mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 11'
+Completed setup for datapoint 11
++ sleep 30
++ echo 'Applying 17 Mbps, 5 ms, Loss: 38.0000% with fq_codel'
+Applying 17 Mbps, 5 ms, Loss: 38.0000% with fq_codel
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens37 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 root handle 1: netem delay 5ms loss 38%'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel'
++ ssh root@192.168.11.140 'sudo tc qdisc del dev ens38 root 2>/dev/null || true'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 root handle 1: tbf rate 17mbit burst 32kbit latency 100ms'
++ ssh root@192.168.11.140 'sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel'
++ echo 'Completed setup for datapoint 12'
+Completed setup for datapoint 12
++ sleep 30

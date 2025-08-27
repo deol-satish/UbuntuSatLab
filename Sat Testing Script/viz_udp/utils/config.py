@@ -12,6 +12,8 @@ DPI = 500
 
 
 colors = ['red','black', 'green', 'yellow', 'y', 'k']
+# colors = ["lightblue", "lightgreen", "pink", "orange"]
+
 markers = ['', '', '', '']         # Add more markers as needed
 linestyles = ['-', '-', '-', '']                         # Add more linestyles as needed
 

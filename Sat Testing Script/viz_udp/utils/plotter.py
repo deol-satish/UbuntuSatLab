@@ -12,6 +12,55 @@ def save_plot(fig, filename, folder):
         fig.savefig(f"{folder}/{filename}.{fmt}", dpi=DPI, bbox_inches='tight')
 
 
+# def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph_directory):
+#     """Plot a graph from Siftr log files."""
+#     sns.set_style("darkgrid")
+#     fig, ax = plt.subplots(figsize=global_figsize)
+
+#     # Enumerate with consistent colors
+#     for i, (path_label, path_df) in enumerate(paths.items()):
+#         ax.plot(
+#             path_df['Time'], 
+#             path_df[ycolumn], 
+#             label=path_label,
+#             color=colors[i % len(colors)]  # cycle colors if more lines than colors
+#         )
+
+#     ax.set(title=title if title_req else "", xlabel=xlabel, ylabel=ylabel)
+#     ax.legend()
+#     ax.grid(True)
+    
+#     plt.tight_layout()
+#     save_plot(fig, filename, graph_directory)
+#     plt.show()
+#     plt.close(fig)
+
+# def plot_cdf_matplotlib(data_dict, xlabel, ylabel, title, filename, folder):
+#     """
+#     Plot CDFs for multiple datasets using matplotlib.
+#     """
+#     fig, ax = plt.subplots(figsize=global_figsize)
+    
+#     for i, (label, data) in enumerate(data_dict.items()):
+#         sorted_data = np.sort(data)
+#         cdf = np.arange(1, len(sorted_data)+1) / len(sorted_data)
+#         ax.plot(
+#             sorted_data, 
+#             cdf, 
+#             label=label,
+#             color=colors[i % len(colors)]  # same palette as plot_matplotlib_graph
+#         )
+    
+#     ax.set(title=title if title_req else "", xlabel=xlabel, ylabel=ylabel)
+#     ax.grid(True)
+#     ax.legend()
+    
+#     plt.tight_layout()
+#     save_plot(fig, filename, folder)
+#     plt.show()
+#     plt.close(fig)
+
+
 def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph_directory):
     """Plot a graph from Siftr log files."""
     sns.set_style("darkgrid")
@@ -42,11 +91,6 @@ def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph
     plt.show()
     plt.close(fig)
 
-
-
-import numpy as np
-import matplotlib.pyplot as plt
-import os
 
 def plot_cdf_matplotlib(data_dict, xlabel, ylabel, title, filename, folder):
     """

@@ -29,4 +29,4 @@ tcp1_ecn="2"
 tcp2_ecn="1"
 
 # duration=1800
-duration=1800
+duration=300

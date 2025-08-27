@@ -1,0 +1,104 @@
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: dualpi2
+
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: dualpi2
+
+
+Here's your script **rewritten for each AQM**, maintaining **your exact structure and syntax**, just replacing `dualpi2` with each of the requested AQMs (`fq_codel`, `codel`, `cake`, `fq_pie`, `pfifo`, `dualpi2`).
+
+---
+
+### 🔁 Replace `dualpi2` with each AQM version:
+
+---
+
+### ✅ FQ-CoDel
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_codel
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_codel
+```
+
+---
+
+### ✅ CoDel
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: codel
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: codel
+```
+
+---
+
+### ✅ Cake
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: cake
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: cake
+```
+
+---
+
+### ✅ FQ-PIE
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: fq_pie
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: fq_pie
+```
+
+---
+
+### ✅ FIFO (pfifo)
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: pfifo limit 1000
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: pfifo limit 1000
+```
+
+---
+
+### ✅ DualPI2 (original)
+
+```bash
+sudo tc qdisc del dev ens37 root 2>/dev/null || true
+sudo tc qdisc add dev ens37 root handle 1: netem delay 15ms loss 15%
+sudo tc qdisc add dev ens37 parent 1:1 handle 2: dualpi2
+
+sudo tc qdisc del dev ens38 root 2>/dev/null || true
+sudo tc qdisc add dev ens38 root handle 1: tbf rate 150mbit burst 32kbit latency 100ms
+sudo tc qdisc add dev ens38 parent 1:1 handle 2: dualpi2
+```
+
+---
+
+
+
