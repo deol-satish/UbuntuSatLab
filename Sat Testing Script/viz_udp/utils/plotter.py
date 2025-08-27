@@ -73,7 +73,7 @@ def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph
         # print("path_label",path_label)
         
         # ax.plot(path_df['Time'], path_df[ycolumn], label=path_label, color=colors[i],marker=markers[i],linestyle=linestyles[i])
-        ax.plot(path_df['Time'], path_df[ycolumn], label=path_label)
+        ax.plot(path_df['Time'], path_df[ycolumn], label=path_label,linestyle=linestyles[i])
 
     # ax.set_ylim(0, 10)  # Set y-axis from 0 to 100
     if not title_req:
@@ -99,11 +99,14 @@ def plot_cdf_matplotlib(data_dict, xlabel, ylabel, title, filename, folder):
     data_dict: dict of label -> 1D array-like data
     """
     fig, ax = plt.subplots(figsize=global_figsize)
+
+    i = 0
     
     for label, data in data_dict.items():
         sorted_data = np.sort(data)
         cdf = np.arange(1, len(sorted_data)+1) / len(sorted_data)
-        ax.plot(sorted_data, cdf, label=label)
+        ax.plot(sorted_data, cdf, label=label,linestyle=linestyles[i])
+        i=i+1
     
     if not title_req:
         title = ""

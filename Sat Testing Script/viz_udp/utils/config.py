@@ -14,8 +14,11 @@ DPI = 500
 colors = ['red','black', 'green', 'yellow', 'y', 'k']
 # colors = ["lightblue", "lightgreen", "pink", "orange"]
 
-markers = ['', '', '', '']         # Add more markers as needed
-linestyles = ['-', '-', '-', '']                         # Add more linestyles as needed
+
+markers = ['o', 's', 'D', '^', 'v', 'p', '*', 'x']         # Add more markers as needed
+linestyles = ['-', '--', '-.', ':']                         # Add more linestyles as needed
+
+linestyles = ['solid', 'dotted', 'dashed', 'dashdot']                         # Add more linestyles as needed
 
 
 bar_width = 0.3
