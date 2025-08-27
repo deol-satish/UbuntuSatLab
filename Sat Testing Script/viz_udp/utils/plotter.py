@@ -86,7 +86,7 @@ def plot_matplotlib_graph(paths, ycolumn, title, xlabel, ylabel, filename, graph
     
     # Tight layout and save the plot
     plt.tight_layout()
-    # print("folder save", graph_directory)
+    print("folder save", graph_directory)
     save_plot(fig, filename, graph_directory)
     plt.show()
     plt.close(fig)
@@ -221,6 +221,9 @@ def plot_boxplot_seaborn(dataframe, column, groupby=None, title="", xlabel="", y
             whis=1.0
         )
     
+    if not title_req:
+        title = ""
+        xlabel = ""
     ax.set(title=title, xlabel=xlabel, ylabel=ylabel)
     ax.tick_params(axis='x', rotation=30)
     
